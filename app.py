@@ -17,7 +17,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
 app.config['SQALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = 'ruben'
 api = Api(app)
-
+db.init_app(app)
 
 #ponemos un decorador que afecta al method justo de debajo
 #el decorador hace que se ejecute siempre antes que el primer request que se haga a la API, se acual sea
@@ -38,7 +38,7 @@ api.add_resource(UserRegister, '/register')
 
 
 if __name__=='__main__':
-    db.init_app(app)
+    
     app.run(port=5000, debug=True)
 
 
