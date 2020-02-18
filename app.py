@@ -18,7 +18,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL','sqlite://
 app.config['SQALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = 'ruben'
 api = Api(app)
-
+db.init_app(app)
 
 jwt=JWT(app, authenticate, identify)
 
@@ -29,6 +29,9 @@ api.add_resource(ItemList,'/items')
 api.add_resource(StoreList,'/stores')
 api.add_resource(UserRegister, '/register')
 
+@app.before_first_request
+def create_tables():
+    db.create_all()
 
 
 if __name__=='__main__':  
