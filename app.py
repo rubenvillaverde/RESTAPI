@@ -1,4 +1,4 @@
-#holi
+#holas
 import os 
 from db import db #Esto quiere decir del archivo db.py importa todo db.py 
 from flask import Flask, render_template
