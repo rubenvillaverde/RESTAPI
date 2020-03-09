@@ -1,6 +1,6 @@
 import os 
 from db import db #Esto quiere decir del archivo db.py importa todo db.py 
-from flask import Flask
+from flask import Flask, render_template
 from flask_restful import Api, reqparse
 from flask_jwt import jwt_required, JWT
 
@@ -22,6 +22,9 @@ db.init_app(app)
 
 jwt=JWT(app, authenticate, identify)
 
+@app.route('/')
+def homeprovisional():
+    return render_template("home.html")
 
 api.add_resource(Store,'/store/<string:name>')
 api.add_resource(Item, '/item/<string:name>')
